@@ -7,7 +7,10 @@ import (
 )
 
 func main() {
-	// fmt.Println(os.Args[1])
+	if len(os.Args) <= 1 {
+		fmt.Println("[Error] specify file name at first command line arg.")
+		os.Exit(1)
+	}
 
 	file, err := os.Open(os.Args[1])
 	if err != nil {
