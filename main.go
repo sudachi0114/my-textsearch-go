@@ -4,11 +4,12 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strings"
 )
 
 func main() {
-	if len(os.Args) <= 1 {
-		fmt.Println("[Error] specify file name at first command line arg.")
+	if len(os.Args) != 3 {
+		fmt.Println("[Usage] go run main.go <file-name> <search-word>")
 		os.Exit(1)
 	}
 
@@ -18,12 +19,16 @@ func main() {
 	}
 	defer file.Close()
 
+	word := os.Args[2]
+
 	scanner := bufio.NewScanner(file)
 	lineNum := 1
 
 	for scanner.Scan() {
 		line := scanner.Text()
-		fmt.Println(line)
+		if strings.Contains(line, word) {
+			fmt.Printf("Find word: %s, In line: %d\n", word, lineNum)
+		}
 
 		lineNum++
 	}
