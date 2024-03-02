@@ -27,7 +27,9 @@ func main() {
 	for scanner.Scan() {
 		line := scanner.Text()
 		if strings.Contains(line, word) {
-			fmt.Printf("Find word: %s, In line: %d\n", word, lineNum)
+			coloredWord := fmt.Sprintf("\033[31m%s\033[0m", word)
+			lineWithColoredWord := strings.Replace(line, word, coloredWord, -1)
+			fmt.Printf("line %d: %s\n", lineNum, lineWithColoredWord)
 		}
 
 		lineNum++
