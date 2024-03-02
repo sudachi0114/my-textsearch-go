@@ -1,0 +1,4 @@
+this is test document
+multi line test
+
+日本語
